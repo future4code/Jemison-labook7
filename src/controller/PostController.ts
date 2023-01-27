@@ -1,20 +1,23 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
-import { InsertPostInputDTO } from "../model/postDTO";
+import { PostInputDTO } from "../model/postDTO";
+import { authenticationData } from "../model/types";
+
 
 export class PostController {
 
+    private postBusiness = new PostBusiness()
+
     public createPost = async (req: Request, res: Response) => {
         try {
-            const input: InsertPostInputDTO = {
+            const input: PostInputDTO = {
                 photo: req.body.photo,
                 description: req.body.description,
                 type: req.body.type,
                 authorId: req.body.authorId
             }
-            const postBusiness = new PostBusiness()
 
-            await postBusiness.createPost(input)
+            await this.postBusiness.createPost(input)
 
             res.status(201).send({message: "Post criado!"})
 
@@ -27,11 +30,9 @@ export class PostController {
         try {
             const { id } = req.params;
 
-            const input = { id };
+            const input: authenticationData = { id };
 
-            const postBusiness = new PostBusiness()
-
-            const result = await postBusiness.getPost(input)
+            const result = await this.postBusiness.getPost(input)
 
             res.status(200).send({result})
         } catch (error: any) {

@@ -15,8 +15,8 @@ Content-Type: application/json
     "photo": "Mar",
     "description": "Azul e calmo",
     "type": "normal",
-    "authorId": "123456",
+    "authorId": "246810",
 }
 ###
-GET http://localhost:3003/get/:id
+GET http://localhost:3003/get/39b6c60d-8ece-41f4-bbe9-2a66de0a4fae
 Content-Type: application/json

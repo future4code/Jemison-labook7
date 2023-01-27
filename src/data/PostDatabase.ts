@@ -1,11 +1,12 @@
 import { CustomError } from "../error/CustomError";
 import { post } from "../model/post";
+import { InsertPostInputDTO } from "../model/postDTO";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class PostDatabase extends BaseDatabase {
     private postTable = 'labook_posts'
 
-    public insertPost = async (post: post) => {
+    public insertPost = async (post: InsertPostInputDTO) => {
         try {
             PostDatabase.connection.initialize()
             await PostDatabase.connection(this.postTable)
@@ -23,8 +24,7 @@ export class PostDatabase extends BaseDatabase {
             PostDatabase.connection.initialize()
             const result = await PostDatabase.connection(this.postTable)
             .select()
-            .where({id})
-            .orderBy('asc')
+            .where({ id })
 
             return result;
         } catch (error: any) {

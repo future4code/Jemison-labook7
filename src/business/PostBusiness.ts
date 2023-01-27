@@ -1,16 +1,16 @@
 import { PostDatabase } from './../data/PostDatabase';
 import { generationId } from './../services/idGenerator';
 import { CustomError } from "../error/CustomError";
-import { InsertPostInputDTO } from "../model/postDTO";
-import { POST_TYPES } from '../model/types';
+import { InsertPostInputDTO, PostInputDTO } from "../model/postDTO";
+import { authenticationData, POST_TYPES } from '../model/types';
 import { InvalidInput } from '../error/PostError';
 
 
 export class PostBusiness {
-    public createPost = async (input: InsertPostInputDTO) => {
+    private postDatabase = new PostDatabase()
+    public createPost = async (input: PostInputDTO) => {
         
         try{
-            const postDatabase = new PostDatabase()
             const { photo, description, type, authorId } = input
 
             if (!photo || !description || !type) {
@@ -20,13 +20,13 @@ export class PostBusiness {
             const id: string = generationId()
             
 
-            await postDatabase.insertPost({
+            await this.postDatabase.insertPost({
                 id,
                 photo,
                 description,
                 type,
-                createdAt: new Date(),
-                authorId
+                created_at: new Date(),
+                author_id: authorId
             })
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
@@ -34,17 +34,16 @@ export class PostBusiness {
     }
 
     //get post{id}
-    public getPost = async (input: any) => {
+    public getPost = async (input: authenticationData) => {
         try {
-            const postDatabase = new PostDatabase()
             if (!input.id) {
                 throw new InvalidInput();
             }
 
-            const result = await postDatabase.getPost(input.id);
+            const result = await this.postDatabase.getPost(input.id);
             return result
         } catch (error: any) {
-            throw new Error(error.message)
+            throw new CustomError(error.statusCode, error.message || error.sqlMessage)
         }
     }
 }
