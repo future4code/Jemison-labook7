@@ -1,0 +1,22 @@
+POST http://localhost:3003/user/create
+Content-Type: application/json
+
+{
+    "name": "Leonardo",
+    "email": "leo@leo.com",
+    "password": "12345678"
+}
+
+###
+POST http://localhost:3003/post/create
+Content-Type: application/json
+
+{
+    "photo": "Mar",
+    "description": "Azul e calmo",
+    "type": "normal",
+    "authorId": "123456",
+}
+###
+GET http://localhost:3003/get/:id
+Content-Type: application/json
