@@ -1,4 +1,4 @@
-export type authenticationData = {
+export interface authenticationData {
     id: string
  }
 

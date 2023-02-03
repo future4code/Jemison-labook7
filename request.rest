@@ -2,8 +2,8 @@ POST http://localhost:3003/user/create
 Content-Type: application/json
 
 {
-    "name": "Leonardo",
-    "email": "leo@leo.com",
+    "name": "Jão",
+    "email": "jao@jao.com",
     "password": "12345678"
 }
 
@@ -18,5 +18,13 @@ Content-Type: application/json
     "authorId": "246810",
 }
 ###
-GET http://localhost:3003/get/39b6c60d-8ece-41f4-bbe9-2a66de0a4fae
+POST http://localhost:3003/friend/add
+Content-Type: application/json
+
+{
+    "user1_id": "0c503f5e-1213-45aa-8d76-a02b97c67c6c",
+    "user2_id": "0c7f41f0-dd7d-4b50-9dba-f3935334da85",
+}
+###
+GET http://localhost:3003/post/all
 Content-Type: application/json

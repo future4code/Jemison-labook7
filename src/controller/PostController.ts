@@ -1,3 +1,4 @@
+import { CustomError } from './../error/CustomError';
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
 import { PostInputDTO } from "../model/postDTO";
@@ -26,15 +27,19 @@ export class PostController {
         }
     }
 
-    public getPost = async (req: Request, res: Response) => {
+    public getById = async (req: Request, res: Response): Promise<void> => {
         try {
-            const { id } = req.params;
+            const postBusiness = new PostBusiness()
+            await postBusiness.getById({id: req.body.id})
+        }catch (error: any) {
+            throw new CustomError(error.statusCode || 400, error.message || error.sqlMessage)
+        }
+    }
 
-            const input: authenticationData = { id };
-
-            const result = await this.postBusiness.getPost(input)
-
-            res.status(200).send({result})
+    public geAllPost = async (req: Request, res: Response) => {
+        try {
+            const allPosts = await this.postBusiness.getAllPosts()
+            res.status(200).send(allPosts)
         } catch (error: any) {
             res.status(400).send(error.message || error.sqlMessage)
         }

@@ -1,5 +1,5 @@
+import { authenticationData } from './../model/types';
 import { CustomError } from "../error/CustomError";
-import { post } from "../model/post";
 import { InsertPostInputDTO } from "../model/postDTO";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -19,17 +19,20 @@ export class PostDatabase extends BaseDatabase {
         }
     }
 
-    public getPost = async (id: string) => {
+    public getAllPost = async () => {
         try {
-            PostDatabase.connection.initialize()
-            const result = await PostDatabase.connection(this.postTable)
+            const allpost = await PostDatabase.connection(this.postTable)
             .select()
-            .where({ id })
-
-            return result;
+            return allpost
         } catch (error: any) {
-            throw new CustomError(error.statusCode, error.message || error.sqlMessage)
+            throw new CustomError (error.statusCode, error.message || error.sqlMessage)
         }
+    }
+
+    public getById = async ({ id }: authenticationData): Promise<authenticationData[]> => {
+        return await PostDatabase.connection(this.postTable)
+        .select()
+        .where("id", id)
     }
 
 }

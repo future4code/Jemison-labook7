@@ -22,4 +22,15 @@ export class UserDatabase extends BaseDatabase {
             UserDatabase.connection.destroy();
         }
     }
+
+    public getById = async (id: string) => {
+        try {
+            await UserDatabase.connection(this.userTable)
+            .select()
+            .where({ id })
+
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
 }

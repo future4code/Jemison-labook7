@@ -1,3 +1,4 @@
+import { UserDatabase } from './../data/UserDatabase';
 import { PostDatabase } from './../data/PostDatabase';
 import { generationId } from './../services/idGenerator';
 import { CustomError } from "../error/CustomError";
@@ -34,16 +35,31 @@ export class PostBusiness {
     }
 
     //get post{id}
-    public getPost = async (input: authenticationData) => {
-        try {
-            if (!input.id) {
-                throw new InvalidInput();
+    public getById = async ({id}: authenticationData): Promise<authenticationData[]> => {
+        try{
+            if(!id){
+                throw new InvalidInput()
             }
 
-            const result = await this.postDatabase.getPost(input.id);
-            return result
+            const postId: authenticationData = {
+                id: id
+            }
+
+            const postDatabase = new PostDatabase()
+            return await postDatabase.getById(postId)
+
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message || error.sqlMessage)
+        }
+
+    }
+
+    public getAllPosts = async () => {
+        try {
+            const allPosts = await this.postDatabase.getAllPost()
+            return allPosts
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
         }
     }
 }
