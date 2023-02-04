@@ -28,4 +28,8 @@ export class FriendshipBusiness {
         await this.friendshipDatbase.addFriend(friends)
 
     }
+
+    public deleteFriend = async (id: string) => {
+        await this.friendshipDatbase.deleteFriend(id)
+    }
 }

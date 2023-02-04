@@ -21,4 +21,19 @@ export class FriendshipController {
             res.status(400).send(error.message)
         }
     }
+
+    public deleteFriend = async ( req: Request, res: Response) => {
+        try {
+            const { id } = req.params
+
+            await this.friendshipBussines.deleteFriend(id)
+
+            let message = "Amizade desfeita"
+
+            res.status(200).send({ message })
+
+        } catch (error: any) {
+            res.status(400).send(error.message)
+        }
+    }
 }

@@ -17,4 +17,15 @@ export class FriendshipDatabase extends BaseDatabase {
             throw new Error(error.message)
         }
     }
+
+    public deleteFriend = async (id: string) => {
+        try {
+            await FriendshipDatabase.connection(this.friendTable)
+            .where({id})
+            .delete()
+
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
 }
