@@ -7,4 +7,4 @@ export const postRouter = express.Router();
 
 postRouter.post("/create", postController.createPost)
 postRouter.get("/all", postController.geAllPost)
-postRouter.get("/", postController.getById)
+postRouter.get("/getbyid/:id", postController.getById)

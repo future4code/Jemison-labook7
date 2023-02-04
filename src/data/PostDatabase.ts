@@ -1,3 +1,4 @@
+import { UserDatabase } from './UserDatabase';
 import { authenticationData } from './../model/types';
 import { CustomError } from "../error/CustomError";
 import { InsertPostInputDTO } from "../model/postDTO";
@@ -29,11 +30,28 @@ export class PostDatabase extends BaseDatabase {
         }
     }
 
-    public getById = async ({ id }: authenticationData): Promise<authenticationData[]> => {
-        const idPost = await PostDatabase.connection(this.postTable)
-        .select()
-        .where("id", id)
-        return idPost
+    // public getById = async ({ id }: authenticationData): Promise<authenticationData[]> => {
+    //     const idPost = await PostDatabase.connection(this.postTable)
+    //     .select()
+    //     .where("id", id)
+    //     return idPost
+    // }
+
+    public getById = async (id: string) => {
+        try {
+            PostDatabase.connection.initialize()
+            const result: any = await PostDatabase.connection(this.postTable)
+            .select("*")
+            .where({ id })
+
+            return result
+        } catch (error: any) {
+            throw new Error (error.messaage)
+        } 
+        finally {
+            console.log("conexão encerrada");
+            PostDatabase.connection.destroy();
+        }
     }
 
 }

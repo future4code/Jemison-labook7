@@ -18,13 +18,9 @@ Content-Type: application/json
     "authorId": "246810",
 }
 ###
-GET http://localhost:3003/post/2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0
+GET http://localhost:3003/post/getbyid/2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0
 Content-Type: application/json
 
-{
-    "id": "2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0",
-    
-}
 ###
 GET http://localhost:3003/post/all
 Content-Type: application/json

@@ -2,7 +2,8 @@ import { CustomError } from './../error/CustomError';
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
 import { PostInputDTO } from "../model/postDTO";
-import { authenticationData } from "../model/types";
+import { post } from "../model/post";
+
 
 
 export class PostController {
@@ -27,15 +28,47 @@ export class PostController {
         }
     }
 
-    public getById = async (req: Request, res: Response): Promise<void> => {
+    // public getById = async (req: Request, res: Response): Promise<void> => {
+    //     try {
+    //         // const postBusiness = new PostBusiness()
+    //         const input = {
+    //             id: req.body.id
+    //         }
+    //         await this.postBusiness.getById(input)
+    //     }catch (error: any) {
+    //         throw new CustomError(error.statusCode || 400, error.message || error.sqlMessage)
+    //     }
+    // }
+
+    public getById = async (req:Request, res: Response) => {
         try {
-            // const postBusiness = new PostBusiness()
-            const input = {
-                id: req.body.id
+            const { id } = req.params
+
+            const result: any = await this.postBusiness.getById(id)
+            
+            let message = "Sucess"
+
+            if(!result[0]) {
+                res.statusCode = 404
+                message = "Post not found"
+                throw new Error (message)
             }
-            await this.postBusiness.getById(input)
-        }catch (error: any) {
-            throw new CustomError(error.statusCode || 400, error.message || error.sqlMessage)
+
+            const post: post = {
+                id: result[0].id,
+                photo: result[0].photo,
+                description: result[0].description,
+                type: result[0].type,
+                createdAt: result[0].created_at,
+                authorId: result[0].author_id,
+            }
+            res.status(200).send({ message, post })
+
+        } catch (error: any) {
+            // let message = error.sql.sqlMessage || error.message
+            // res.statusCode = 400
+            // res.send({ message })
+            res.status(100).send(error.message)
         }
     }
 
