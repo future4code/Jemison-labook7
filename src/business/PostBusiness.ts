@@ -45,9 +45,9 @@ export class PostBusiness {
                 id: id
             }
 
-            const postDatabase = new PostDatabase()
-            return await postDatabase.getById(postId)
-
+            // const postDatabase = new PostDatabase()
+            const idPost = await this.postDatabase.getById(postId)
+            return idPost
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message || error.sqlMessage)
         }

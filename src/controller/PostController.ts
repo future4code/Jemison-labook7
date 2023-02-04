@@ -29,8 +29,11 @@ export class PostController {
 
     public getById = async (req: Request, res: Response): Promise<void> => {
         try {
-            const postBusiness = new PostBusiness()
-            await postBusiness.getById({id: req.body.id})
+            // const postBusiness = new PostBusiness()
+            const input = {
+                id: req.body.id
+            }
+            await this.postBusiness.getById(input)
         }catch (error: any) {
             throw new CustomError(error.statusCode || 400, error.message || error.sqlMessage)
         }

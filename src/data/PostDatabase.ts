@@ -30,9 +30,10 @@ export class PostDatabase extends BaseDatabase {
     }
 
     public getById = async ({ id }: authenticationData): Promise<authenticationData[]> => {
-        return await PostDatabase.connection(this.postTable)
+        const idPost = await PostDatabase.connection(this.postTable)
         .select()
         .where("id", id)
+        return idPost
     }
 
 }

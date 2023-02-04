@@ -18,12 +18,12 @@ Content-Type: application/json
     "authorId": "246810",
 }
 ###
-POST http://localhost:3003/friend/add
+GET http://localhost:3003/post/2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0
 Content-Type: application/json
 
 {
-    "user1_id": "0c503f5e-1213-45aa-8d76-a02b97c67c6c",
-    "user2_id": "0c7f41f0-dd7d-4b50-9dba-f3935334da85",
+    "id": "2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0",
+    
 }
 ###
 GET http://localhost:3003/post/all

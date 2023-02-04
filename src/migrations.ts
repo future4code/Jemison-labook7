@@ -21,6 +21,13 @@ export class Migrations extends BaseDatabase {
             FOREIGN KEY (author_id) REFERENCES labook_users (id)
          );
 
+         CREATE TABLE IF NOT EXISTS labook_friendship(
+            user VARCHAR(255) PRIMARY KEY,
+            friendship VARCHAR(255),
+            FOREIGN KEY (user) REFERENCES labook_users (id),
+            FOREIGN KEY (friendship) REFERENCES labook_users (id),
+         )
+
       `)
       .then(() => {
        console.log(`Tables created successfully!`)
