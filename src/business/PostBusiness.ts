@@ -34,26 +34,6 @@ export class PostBusiness {
         }
     }
 
-    //get post{id}
-    // public getById = async ({id}: authenticationData): Promise<authenticationData[]> => {
-    //     try{
-    //         if(!id){
-    //             throw new InvalidInput()
-    //         }
-
-    //         const postId: authenticationData = {
-    //             id: id
-    //         }
-
-    //         // const postDatabase = new PostDatabase()
-    //         const idPost = await this.postDatabase.getById(postId)
-    //         return idPost
-    //     } catch (error: any) {
-    //         throw new CustomError(error.statusCode, error.message || error.sqlMessage)
-    //     }
-
-    // }
-
     public getById = async (id: string) => {
         const result = await this.postDatabase.getById(id)
         return result

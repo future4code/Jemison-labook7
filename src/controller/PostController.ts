@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
 import { PostInputDTO } from "../model/postDTO";
 import { post } from "../model/post";
+import { authenticationData } from '../model/types';
 
 
 
@@ -28,20 +29,9 @@ export class PostController {
         }
     }
 
-    // public getById = async (req: Request, res: Response): Promise<void> => {
-    //     try {
-    //         // const postBusiness = new PostBusiness()
-    //         const input = {
-    //             id: req.body.id
-    //         }
-    //         await this.postBusiness.getById(input)
-    //     }catch (error: any) {
-    //         throw new CustomError(error.statusCode || 400, error.message || error.sqlMessage)
-    //     }
-    // }
-
     public getById = async (req:Request, res: Response) => {
         try {
+            
             const { id } = req.params
 
             const result: any = await this.postBusiness.getById(id)

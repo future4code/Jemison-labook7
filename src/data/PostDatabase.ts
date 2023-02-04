@@ -30,13 +30,6 @@ export class PostDatabase extends BaseDatabase {
         }
     }
 
-    // public getById = async ({ id }: authenticationData): Promise<authenticationData[]> => {
-    //     const idPost = await PostDatabase.connection(this.postTable)
-    //     .select()
-    //     .where("id", id)
-    //     return idPost
-    // }
-
     public getById = async (id: string) => {
         try {
             PostDatabase.connection.initialize()
