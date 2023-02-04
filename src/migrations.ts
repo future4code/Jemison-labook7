@@ -22,8 +22,9 @@ export class Migrations extends BaseDatabase {
          );
 
          CREATE TABLE IF NOT EXISTS labook_friendship(
-            user VARCHAR(255) PRIMARY KEY,
-            friendship VARCHAR(255),
+            id VARCHAR(255) PRIMARY KEY
+            user VARCHAR(255) NOT NULL,
+            friendship VARCHAR(255) NOT NULL,
             FOREIGN KEY (user) REFERENCES labook_users (id),
             FOREIGN KEY (friendship) REFERENCES labook_users (id),
          )
