@@ -10,5 +10,5 @@
 <p>2. Criar post = Ok<p>
 <p>3. Buscar um post por id = OK<p>
 <p>4. Fazer amizade = OK<p>
-<p>5. Desfazer amizade = não funciona<p>
+<p>5. Desfazer amizade = OK<p>
 <p>6. Ver todo o Feed = Ok<p>
