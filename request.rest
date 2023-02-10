@@ -1,4 +1,4 @@
-POST http://localhost:3003/user/create
+POST https://labook7.onrender.com/user/create
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3003/post/create
+POST https://labook7.onrender.com/post/create
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
     "authorId": "246810",
 }
 ###
-POST http://localhost:3003/friendship/create
+POST https://labook7.onrender.com/friendship/create
 Content-Type: application/json
 
 {
@@ -26,13 +26,13 @@ Content-Type: application/json
     "friendship": "0c7f41f0-dd7d-4b50-9dba-f3935334da85"
 }
 ###
-GET http://localhost:3003/post/getbyid/2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0
+GET https://labook7.onrender.com/post/getbyid/2cb6aad8-8d03-4ffd-b9fa-84165abdd6e0
 Content-Type: application/json
 
 ###
-GET http://localhost:3003/post/all
+GET https://labook7.onrender.com/post/all
 Content-Type: application/json
 
 ###
-DELETE http://localhost:3003/friendship/delete/b0d3c373-e7b9-45ab-acb8-52452fbca833
+DELETE https://labook7.onrender.com/friendship/delete/b0d3c373-e7b9-45ab-acb8-52452fbca833
 Content-Type: application/json
